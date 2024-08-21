@@ -1,16 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
-import { get, post } from 'src/fetch';
+import {ContextPriveder} from 'components/Context';
+import Webamp from 'components/Webamp';
+import Menu from 'components/Menu';
+import Modal from 'components/Modal';
 import './index.css';
 
 const App: React.FC = () => {
-  useEffect(() => {
-    get('/')
-      .then(res => console.log(res))
-    post('/test', { test: 'test' })
-      .then(res => console.log(res))
-  }, [])
-  return <div className='p-8'>Hello, world!</div>;
+
+  return <div className='overflow-hidden w-screen h-screen flex flex-col'>
+    <ContextPriveder>
+      <Modal/>
+      <Webamp />
+      <Menu/>
+    </ContextPriveder>
+  </div>
+
 };
 
 //@ts-ignore
